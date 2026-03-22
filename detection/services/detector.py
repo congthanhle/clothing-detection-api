@@ -79,8 +79,17 @@ def _get_clothing_model() -> YOLO:
     """Returns a singleton instance of the DeepFashion2 clothing model."""
     global _clothing_model
     if _clothing_model is None:
+        import os
+        from huggingface_hub import hf_hub_download
+
+        if not os.path.exists(CLOTHING_MODEL_PATH):
+            logger.info("[Detector] Model not found locally, downloading from HuggingFace...")
+            model_path = hf_hub_download(repo_id="Bingsu/adetailer", filename="deepfashion2_yolov8s-seg.pt")
+        else:
+            model_path = CLOTHING_MODEL_PATH
+
         logger.info("[Detector] Loading DeepFashion2 model...")
-        _clothing_model = YOLO(CLOTHING_MODEL_PATH)
+        _clothing_model = YOLO(model_path)
     return _clothing_model
 
 # --- MAIN detect() FUNCTION ---
