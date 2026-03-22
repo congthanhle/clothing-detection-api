@@ -1,0 +1,10 @@
+Django>=4.2,<5.0
+djangorestframework
+django-cors-headers
+python-dotenv
+Pillow
+torch
+torchvision
+ultralytics>=8.0.0
+huggingface_hub>=0.20.0
+supabase
