@@ -12,6 +12,8 @@ DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 allowed_hosts_env = os.environ.get('ALLOWED_HOSTS', '*')
 ALLOWED_HOSTS = [host.strip() for host in allowed_hosts_env.split(',') if host.strip()]
+if 'clothing-detection-api-production.up.railway.app' not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append('clothing-detection-api-production.up.railway.app')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
