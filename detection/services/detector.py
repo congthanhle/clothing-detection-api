@@ -36,6 +36,22 @@ DEEPFASHION2_CLASSES = {
     12: "Sling dress",
 }
 
+DEEPFASHION2_CLASSES_VI = {
+    0:  "Áo tay ngắn",
+    1:  "Áo tay dài",
+    2:  "Áo khoác tay ngắn",
+    3:  "Áo khoác tay dài",
+    4:  "Áo vest",
+    5:  "Áo hai dây",
+    6:  "Quần short",
+    7:  "Quần dài",
+    8:  "Váy",
+    9:  "Đầm tay ngắn",
+    10: "Đầm tay dài",
+    11: "Đầm vest",
+    12: "Đầm hai dây",
+}
+
 # --- EXCEPTIONS ---
 
 class NoPersonDetectedError(Exception):
@@ -139,7 +155,7 @@ def detect(image_path: str) -> list[dict]:
             x1, y1, x2, y2 = [int(v) for v in box.xyxy[0].tolist()]
 
             detections.append({
-                "label":      DEEPFASHION2_CLASSES.get(class_id, f"Class {class_id}"),
+                "label":      DEEPFASHION2_CLASSES_VI.get(class_id, f"Class {class_id}"),
                 "confidence": confidence,
                 "bbox":       {"x1": x1, "y1": y1, "x2": x2, "y2": y2}
             })
@@ -162,13 +178,13 @@ class ClothingDetector:
 def mock_detect(image_path: str) -> list[dict]:
     """Hardcoded detections for testing without running models."""
     return [
-        {"label": "Long sleeve top",
+        {"label": "Áo tay dài",
          "confidence": 0.92,
          "bbox": {"x1": 80,  "y1": 60,  "x2": 320, "y2": 380}},
-        {"label": "Trousers",
+        {"label": "Quần dài",
          "confidence": 0.87,
          "bbox": {"x1": 100, "y1": 390, "x2": 300, "y2": 580}},
-        {"label": "Short sleeve outwear",
+        {"label": "Áo khoác tay ngắn",
          "confidence": 0.74,
          "bbox": {"x1": 60,  "y1": 50,  "x2": 340, "y2": 400}},
     ]
