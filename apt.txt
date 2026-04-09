@@ -4,3 +4,4 @@ libsm6
 libxext6
 libxrender-dev
 libxcb1
+libxcb-cursor0
