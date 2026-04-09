@@ -7,6 +7,7 @@ Pillow
 torch
 torchvision
 opencv-python-headless
+opencv-contrib-python-headless
 ultralytics>=8.0.0
 huggingface_hub>=0.20.0
 supabase
